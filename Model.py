@@ -181,11 +181,11 @@ class Model_Encoder(nn.Module):
         self.paper_pre = nn.Linear(self.shape_size, self.shape_size)
         self.paper_post = nn.Linear(self.shape_size, 64)
 
-        self.paper_pre = nn.Linear(self.shape_size, self.shape_size)
-        self.paper_post = nn.Linear(self.shape_size, 64)
+        self.dataset_pos_pre = nn.Linear(self.shape_size, self.shape_size)
+        self.dataset_pos_post = nn.Linear(self.shape_size, 64)
 
-        self.paper_pre = nn.Linear(self.shape_size, self.shape_size)
-        self.paper_post = nn.Linear(self.shape_size, 64)
+        self.dataset_neg_pre = nn.Linear(self.shape_size, self.shape_size)
+        self.dataset_neg_post = nn.Linear(self.shape_size, 64)
 
         self.lin_paper_test = nn.Linear(768, self.emb_size)
 
@@ -247,11 +247,11 @@ class Model_Encoder(nn.Module):
         paper_batch_emb = self.paper_pre(paper_batch_emb)
         paper_batch_emb = self.paper_post(paper_batch_emb)
 
-        pos_dataset_batch_emb = self.paper_pre(pos_dataset_batch_emb)
-        pos_dataset_batch_emb = self.paper_post(pos_dataset_batch_emb)
+        pos_dataset_batch_emb = self.dataset_pos_pre(pos_dataset_batch_emb)
+        pos_dataset_batch_emb = self.dataset_pos_post(pos_dataset_batch_emb)
 
-        neg_dataset_batch_emb = self.paper_pre(neg_dataset_batch_emb)
-        neg_dataset_batch_emb = self.paper_post(neg_dataset_batch_emb)
+        neg_dataset_batch_emb = self.dataset_neg_pre(neg_dataset_batch_emb)
+        neg_dataset_batch_emb = self.dataset_neg_post(neg_dataset_batch_emb)
 
 
         if perturbed:
